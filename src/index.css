@@ -1,0 +1,19 @@
+@font-face {
+  font-family: "NunitoSans";
+  src: local("NunitoSans"),
+   url("../public/fonts/Nunito_Sans/NunitoSans-Regular.ttf") format("truetype");
+}
+
+body {
+  margin: 0;
+  font-family: 'NunitoSans';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #FAFAFA;
+}
+
+
+
+code {
+  font-family: 'NunitoSans'
+}

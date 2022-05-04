@@ -1,0 +1,7 @@
+.CountryList {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    row-gap: 75px;
+    column-gap: 75px;
+    margin: 75px;
+}
