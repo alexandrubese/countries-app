@@ -98,6 +98,8 @@ const Countries = () => {
 
                 const searchResults = await parseResponses(successfullResults);
             
+
+                // maybe do this in the view ?! think about dropdown
                 if(regionFilter !== '') {
                     const filteredResultsByRegion = searchResults.filter(result => result.region.toLowerCase() === regionFilter.toLowerCase());
                     setCountries(filteredResultsByRegion);
@@ -114,10 +116,10 @@ const Countries = () => {
         try {
             setRegionFilter(region);
             // still need to think this through
-            // on change here if there is a searchterm we need to redo onSearchHandler with new filter
 
+           // on change if no search term, do normal call
+           // on change if there is a searchterm we need to redo onSearchHandler with new filter
 
-            
             //setIsLoading(true);
            const response = await fetch(`${API_URL}/continent/${region}`, {
         });
