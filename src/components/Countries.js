@@ -114,6 +114,10 @@ const Countries = () => {
         try {
             setRegionFilter(region);
             // still need to think this through
+            // on change here if there is a searchterm we need to redo onSearchHandler with new filter
+
+
+            
             //setIsLoading(true);
            const response = await fetch(`${API_URL}/continent/${region}`, {
         });
