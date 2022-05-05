@@ -4,6 +4,18 @@
    url("../public/fonts/Nunito_Sans/NunitoSans-Regular.ttf") format("truetype");
 }
 
+@font-face {
+  font-family: "NunitoSansBold";
+  src: local("NunitoSansBold"),
+   url("../public/fonts/Nunito_Sans/NunitoSans-ExtraBold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "NunitoSansSemiBold";
+  src: local("NunitoSansSemiBold"),
+   url("../public/fonts/Nunito_Sans/NunitoSans-SemiBold.ttf") format("truetype");
+}
+
 body {
   margin: 0;
   font-family: 'NunitoSans';

@@ -3,6 +3,7 @@ import { API_URL } from "../utils/consts";
 import CountryDetails from "./CountryDetails";
 //import CountryFilters from "./CountryFilters";
 import CountryList from "./CountryList";
+import classes from "./Countries.module.css";
 
 const Countries = () => {
     const [countries, setCountries] = useState([]);
@@ -49,7 +50,7 @@ const Countries = () => {
 
     useEffect(() => {
        getCountries();
-   });
+   }, []);
 
     const createUniqueArray = (array) => {
         const key = 'name';
@@ -173,7 +174,7 @@ const Countries = () => {
                                 countryDetails={countryDetails}
                                 countryCardRemoveHandler={countryCardRemoveHandler} /> 
                     :
-                <>
+                <div className={classes.wrapper}>
                     <div className="filter-container">
                     <input type="text" onChange={onInputChange} value={searchTerm} />
                     <select 
@@ -195,7 +196,7 @@ const Countries = () => {
                     searchTerm={searchTerm}
                     countryCardClickHandler={countryCardClickHandler}
                     />
-                </>
+                </div>
             }
             
         </>

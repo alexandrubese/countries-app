@@ -11,9 +11,9 @@ const CountryCard = (props) => {
             </div>
             <div className={`${classes.CardContent}`}>
                 <h2>{props.name}</h2>
-                <div><b>Population:</b> {props.population.toLocaleString()}</div>
-                <div><b>Region:</b> {props.region}</div>
-                <div><b>Capital:</b> {props.capital}</div>
+                <div><span className={classes.subtitle}>Population:</span> {props.population.toLocaleString()}</div>
+                <div><span className={classes.subtitle}>Region:</span> {props.region}</div>
+                <div><span className={classes.subtitle}>Capital:</span> {props.capital}</div>
             </div>
         </div>
     )

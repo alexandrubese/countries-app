@@ -1,10 +1,12 @@
 .CountryCard {
+    width: 260px;
+    height: 350px;
     background-color: #fff;
     border-radius: 5px;
     box-shadow: 3px 3px 5px #dedede;
-    width: 300px;
 }
-.FlagContainer{
+
+.FlagContainer {
    height: 160px;
 }
 
@@ -16,11 +18,17 @@
 }
 
 .CardContent {
-    padding: 0 25px 45px 25px;
+    padding: 5px 25px 45px 25px;
+    font-size: 14px;
 }
 
 .CardContent h2 {
-    font-size: 18px;
+    font-family: 'NunitoSansBold';
+    font-size: 16px;
+}
+
+.subtitle {
+    font-family: 'NunitoSansSemiBold';
 }
 
 .CardContent div {
