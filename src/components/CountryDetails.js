@@ -1,9 +1,14 @@
 import classes from "./CountryDetails.module.css";
 
 const CountryDetails = (props) => {
-    console.log(props)
     const onBackHandler = () => {
         props.countryCardRemoveHandler();
+    }
+
+    const onClickHandler = (event) => {
+        // bug for czech republic, try something else instead of name (maybe abbreviation)
+        const countryName = event.target.innerText;
+        props.countryCardClickHandler(countryName.trim());
     }
 
     return <div className="country">
@@ -13,7 +18,6 @@ const CountryDetails = (props) => {
 
             <div className={classes.countryDetailsWrapper}>
                 <img className={classes.flag} src={props.countryDetails.flag} alt={props.countryDetails.name} />
-
                 <div className={classes.infoContainer}>
                     <h2>{props.countryDetails.name}</h2>
                     <div className={classes.info}>
@@ -30,7 +34,7 @@ const CountryDetails = (props) => {
                             <p>Currencies: {props.countryDetails.currencies && props.countryDetails.currencies.map(currency => <span>{` ${currency.name} |`}</span>)}</p>
                             <p>Languages: {props.countryDetails.languages && props.countryDetails.languages.map(language => <span>{` ${language.name} |`}</span>)}</p>
 
-                            <p>Border Countries: {props.countryDetails.borders && props.countryDetails.borders.map(border => <span>{` ${border} |`}</span>)}</p>
+                            <p>Border Countries: {props.countryBorders && props.countryBorders.map(border => <span onClick={onClickHandler} className={classes.borderLink}>{` ${border.name} `}</span>)}</p>
                         </div>
                     </div>
                 </div>

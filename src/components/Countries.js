@@ -7,11 +7,25 @@ import classes from "./Countries.module.css";
 const Countries = () => {
     const [countries, setCountries] = useState([]);
     const [countryDetails, setCountryDetails] = useState('');
+    const [countryBorders, setCountryBorders] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
     const [regionFilter, setRegionFilter] = useState('no-filter');
+    const [allCountries, setAllCountries] = useState([]);
+
+    const getBorderCountries = (clickedCountry) => {
+        return allCountries.filter(country => {
+            if(clickedCountry.borders.includes(country.alpha3Code)) {
+                return country.name;
+            } 
+            return;
+        })
+    }
 
     const countryCardClickHandler = (countryName) => {
-        const country= countries.find(country => country.name === countryName);
+        const country = allCountries.find(country => country.name === countryName);
+        const countryBorders = getBorderCountries(country);
+
+        setCountryBorders(countryBorders);
         setCountryDetails(country);
     }
 
@@ -34,6 +48,7 @@ const Countries = () => {
             //setIsLoading(false);               
             if(response.ok) {
                const data = await response.json();
+               setAllCountries(data);
                if(regionFilter!=='no-filter') {
                 const filteredResultsByRegion = filterByRegionCallback(data, regionFilter);
                 setCountries(filteredResultsByRegion);
@@ -177,7 +192,11 @@ const Countries = () => {
         <div className={classes.wrapper}>
         {countryDetails ?  <CountryDetails 
                                 countryDetails={countryDetails}
-                                countryCardRemoveHandler={countryCardRemoveHandler} /> 
+                                countryBorders={countryBorders}
+                                countryCardRemoveHandler={countryCardRemoveHandler} 
+                                countryCardClickHandler={countryCardClickHandler}
+                                
+                            /> 
                         :
                 <>
                     <div className={classes.filterContainer}>
