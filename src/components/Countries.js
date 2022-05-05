@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { API_URL } from "../utils/consts";
 import CountryDetails from "./CountryDetails";
-//import CountryFilters from "./CountryFilters";
 import CountryList from "./CountryList";
 import classes from "./Countries.module.css";
 
@@ -170,13 +169,19 @@ const Countries = () => {
 
     return (    
         <>
-            {countryDetails ?  <CountryDetails 
+        <div className={classes.header}>
+            <div className={classes.headerTitle}>Where in the world?</div>
+            <div>Night Mode</div>
+        </div>
+
+        <div className={classes.wrapper}>
+        {countryDetails ?  <CountryDetails 
                                 countryDetails={countryDetails}
                                 countryCardRemoveHandler={countryCardRemoveHandler} /> 
-                    :
-                <div className={classes.wrapper}>
-                    <div className="filter-container">
-                    <input type="text" onChange={onInputChange} value={searchTerm} />
+                        :
+                <>
+                    <div className={classes.filterContainer}>
+                    <input className={classes.searchInput} type="text" onChange={onInputChange} value={searchTerm} />
                     <select 
                         name="filter-region" 
                         id="filter-region" 
@@ -196,8 +201,9 @@ const Countries = () => {
                     searchTerm={searchTerm}
                     countryCardClickHandler={countryCardClickHandler}
                     />
-                </div>
+                </>
             }
+        </div>
             
         </>
     );

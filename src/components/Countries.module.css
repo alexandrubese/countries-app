@@ -1,3 +1,30 @@
+.header {
+    height: 80px;
+    background: white;
+    box-shadow: 0px 2px 5px #eee;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 80px;
+    align-items: center;
+}
+
+.headerTitle {
+    font-family: "NunitoSansBold";
+    font-size: 24px;
+}
+
 .wrapper {
-    margin: 80px;
+    margin: 0 80px;
+}
+
+.searchInput {
+    width: 400px;
+    height: 55px;
+    padding-left: 75px;
+}
+
+.filterContainer {
+    padding: 50px 0;
+    display: flex;
+    justify-content: space-between;
 }

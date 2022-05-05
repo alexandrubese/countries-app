@@ -1,0 +1,26 @@
+.backBtn {
+    margin: 50px 0;
+}
+
+.countryDetailsWrapper {
+    display: flex;
+}
+
+.flag {
+    width: 560px;
+    height: 400px;
+}
+
+.infoContainer {
+    margin-left: 120px;
+    margin-top: 40px;
+}
+
+.info {
+    display: flex;
+}
+
+.column {
+    margin-left: 80px;
+}
+
