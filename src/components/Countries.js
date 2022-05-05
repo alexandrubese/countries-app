@@ -11,6 +11,15 @@ const Countries = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [regionFilter, setRegionFilter] = useState('no-filter');
     const [allCountries, setAllCountries] = useState([]);
+    const [theme, setTheme] = useState('day');
+
+    const toggleTheme = () => {
+        if(theme === 'day'){
+            setTheme('dark');
+        } else {
+            setTheme('day');
+        }
+    }
 
     const getBorderCountries = (clickedCountry) => {
         return allCountries.filter(country => {
@@ -184,46 +193,57 @@ const Countries = () => {
 
     return (    
         <>
-        <div className={classes.header}>
-            <div className={classes.headerTitle}>Where in the world?</div>
-            <div>Night Mode</div>
-        </div>
+            <div className=
+                {theme ==='day' ? classes.header : `${classes.header} ${classes.darkHeader}` }
+            >
+                <div className={classes.headerTitle}>Where in the world?</div>
+                <div onClick={toggleTheme}>{theme && theme === 'day' ? 'Dark Mode': 'Day Mode' }</div>
+            </div>
 
-        <div className={classes.wrapper}>
-        {countryDetails ?  <CountryDetails 
-                                countryDetails={countryDetails}
-                                countryBorders={countryBorders}
-                                countryCardRemoveHandler={countryCardRemoveHandler} 
-                                countryCardClickHandler={countryCardClickHandler}
-                                
+            <div className=
+            {theme ==='day' ? classes.wrapper : `${classes.wrapper} ${classes.dark}` } >
+            {countryDetails ?  <CountryDetails 
+                                    theme={theme}
+                                    countryDetails={countryDetails}
+                                    countryBorders={countryBorders}
+                                    countryCardRemoveHandler={countryCardRemoveHandler} 
+                                    countryCardClickHandler={countryCardClickHandler}
+                                    
                             /> 
                         :
                 <>
                     <div className={classes.filterContainer}>
-                    <input className={classes.searchInput} type="text" onChange={onInputChange} value={searchTerm} />
+                    <input className=
+                        {theme ==='day' ? classes.searchInput : `${classes.searchInput} ${classes.lightDark} ${classes.darkSearchInput}` }
+                        type="text" 
+                        onChange={onInputChange} 
+                        value={searchTerm} 
+                    />
                     <select 
+                        className=
+                        {theme ==='day' ? classes.searchDropdown : `${classes.searchDropdown} ${classes.lightDark} ${classes.darkSearchInput}` }
                         name="filter-region" 
                         id="filter-region" 
                         onChange={onDropdownChange} 
                         value={regionFilter}
-                        >
-                            <option value="no-filter" defaultValue="no-filter">No Filter</option>
-                            <option value="africa">Africa</option>
-                            <option value="americas">Americas</option>
-                            <option value="asia">Asia</option>
-                            <option value="europe">Europe</option>
-                            <option value="oceania">Oceania</option>
+                    >
+                        <option value="no-filter" defaultValue="no-filter">No Filter</option>
+                        <option value="africa">Africa</option>
+                        <option value="americas">Americas</option>
+                        <option value="asia">Asia</option>
+                        <option value="europe">Europe</option>
+                        <option value="oceania">Oceania</option>
                     </select>
                     </div>
                     <CountryList 
-                    countries={countries}
-                    searchTerm={searchTerm}
-                    countryCardClickHandler={countryCardClickHandler}
+                        theme={theme}
+                        countries={countries}
+                        searchTerm={searchTerm}
+                        countryCardClickHandler={countryCardClickHandler}
                     />
                 </>
             }
         </div>
-            
         </>
     );
 }

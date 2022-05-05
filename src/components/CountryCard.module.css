@@ -1,10 +1,14 @@
 .CountryCard {
     width: 260px;
     height: 350px;
-    background-color: #fff;
     border-radius: 5px;
     box-shadow: 3px 3px 5px #dedede;
     cursor: pointer;
+}
+
+.DarkCoutryCard {
+    background:#2B3743;
+    box-shadow: 3px 3px 5px #202C35;
 }
 
 .FlagContainer {

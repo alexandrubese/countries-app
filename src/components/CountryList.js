@@ -12,6 +12,7 @@ const CountryList = (props) => {
                             population={country.population}
                             capital={country.capital}
                             region={country.region}
+                            theme={props.theme}
                             countryCardClickHandler={props.countryCardClickHandler}
                         />
                 }
