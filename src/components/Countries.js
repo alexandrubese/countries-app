@@ -49,7 +49,7 @@ const Countries = () => {
 
     useEffect(() => {
        getCountries();
-   }, []);
+   });
 
     const createUniqueArray = (array) => {
         const key = 'name';
