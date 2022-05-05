@@ -15,7 +15,7 @@ const CountryDetails = (props) => {
                 <img className={classes.flag} src={props.countryDetails.flag} alt={props.countryDetails.name} />
 
                 <div className={classes.infoContainer}>
-                    <div>{props.countryDetails.name}</div>
+                    <h2>{props.countryDetails.name}</h2>
                     <div className={classes.info}>
                         <div>
                             <p>Native name: {props.countryDetails.nativeName}</p>

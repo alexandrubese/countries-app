@@ -1,6 +1,7 @@
 .backBtn {
     margin: 50px 0;
     cursor: pointer;
+    width: 50px;
 }
 
 .countryDetailsWrapper {
@@ -8,13 +9,13 @@
 }
 
 .flag {
-    width: 560px;
-    height: 400px;
-}
+    width: 45%;
+}   
 
 .infoContainer {
     margin-left: 120px;
     margin-top: 40px;
+    width: 40%;
 }
 
 .info {
