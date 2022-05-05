@@ -1,12 +1,23 @@
 import { useEffect, useState } from "react";
 import { API_URL } from "../utils/consts";
+import CountryDetails from "./CountryDetails";
 //import CountryFilters from "./CountryFilters";
 import CountryList from "./CountryList";
 
 const Countries = () => {
     const [countries, setCountries] = useState([]);
+    const [countryDetails, setCountryDetails] = useState('');
     const [searchTerm, setSearchTerm] = useState('');
     const [regionFilter, setRegionFilter] = useState('no-filter');
+
+    const countryCardClickHandler = (countryName) => {
+        const country= countries.find(country => country.name === countryName);
+        setCountryDetails(country);
+    }
+
+    const countryCardRemoveHandler = () => {
+        setCountryDetails('');
+    }
 
     const filterByRegionCallback = (countries, regionFilterCheck) => {
         if(regionFilterCheck === 'no-filter') {
@@ -158,26 +169,35 @@ const Countries = () => {
 
     return (    
         <>
-            <div className="filter-container">
-                <input type="text" onChange={onInputChange} value={searchTerm} />
-                <select 
-                    name="filter-region" 
-                    id="filter-region" 
-                    onChange={onDropdownChange} 
-                    value={regionFilter}
-                    >
-                        <option value="no-filter" defaultValue="no-filter">No Filter</option>
-                        <option value="africa">Africa</option>
-                        <option value="americas">Americas</option>
-                        <option value="asia">Asia</option>
-                        <option value="europe">Europe</option>
-                        <option value="oceania">Oceania</option>
-                </select>
-            </div>
-            <CountryList 
-                countries={countries}
-                searchTerm={searchTerm}
-            />
+            {countryDetails ?  <CountryDetails 
+                                countryDetails={countryDetails}
+                                countryCardRemoveHandler={countryCardRemoveHandler} /> 
+                    :
+                <>
+                    <div className="filter-container">
+                    <input type="text" onChange={onInputChange} value={searchTerm} />
+                    <select 
+                        name="filter-region" 
+                        id="filter-region" 
+                        onChange={onDropdownChange} 
+                        value={regionFilter}
+                        >
+                            <option value="no-filter" defaultValue="no-filter">No Filter</option>
+                            <option value="africa">Africa</option>
+                            <option value="americas">Americas</option>
+                            <option value="asia">Asia</option>
+                            <option value="europe">Europe</option>
+                            <option value="oceania">Oceania</option>
+                    </select>
+                    </div>
+                    <CountryList 
+                    countries={countries}
+                    searchTerm={searchTerm}
+                    countryCardClickHandler={countryCardClickHandler}
+                    />
+                </>
+            }
+            
         </>
     );
 }

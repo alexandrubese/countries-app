@@ -1,8 +1,11 @@
 import classes from "./CountryCard.module.css";
 
 const CountryCard = (props) => {
+    const countryCardOnClickHandler = (event) => {
+        props.countryCardClickHandler(props.name);
+    }
     return (
-        <div className={`${classes.CountryCard}`}>
+        <div className={`${classes.CountryCard}`} onClick={countryCardOnClickHandler}>
             <div className={`${classes.FlagContainer}`}>
                 <img src={props.flag} alt={props.name} />
             </div>

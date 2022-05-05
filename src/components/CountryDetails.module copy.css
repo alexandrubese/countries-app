@@ -1,0 +1,29 @@
+.CountryCard {
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 3px 3px 5px #dedede;
+    width: 300px;
+}
+.FlagContainer{
+   height: 160px;
+}
+
+.CountryCard img {
+    border-radius: 5px 5px 0px 0px;
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+}
+
+.CardContent {
+    padding: 0 25px 45px 25px;
+}
+
+.CardContent h2 {
+    font-size: 18px;
+}
+
+.CardContent div {
+    margin-bottom: 5px;
+}
+
