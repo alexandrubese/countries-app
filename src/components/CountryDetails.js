@@ -30,11 +30,11 @@ const CountryDetails = (props) => {
                         </div>
 
                         <div className={classes.column}>
-                            <p>Top LevelDomain: {props.countryDetails.topLevelDomain && props.countryDetails.topLevelDomain.map(tld => <span>{` ${tld} |`}</span>)}</p>
-                            <p>Currencies: {props.countryDetails.currencies && props.countryDetails.currencies.map(currency => <span>{` ${currency.name} |`}</span>)}</p>
-                            <p>Languages: {props.countryDetails.languages && props.countryDetails.languages.map(language => <span>{` ${language.name} |`}</span>)}</p>
+                            <p>Top LevelDomain: {props.countryDetails.topLevelDomain && props.countryDetails.topLevelDomain.map(tld => <span key={tld}>{` ${tld} |`}</span>)}</p>
+                            <p>Currencies: {props.countryDetails.currencies && props.countryDetails.currencies.map(currency => <span key={currency.name}>{` ${currency.name} |`}</span>)}</p>
+                            <p>Languages: {props.countryDetails.languages && props.countryDetails.languages.map(language => <span key={language.name}>{` ${language.name} |`}</span>)}</p>
 
-                            <p>Border Countries: {props.countryBorders && props.countryBorders.map(border => <span onClick={onClickHandler} className={classes.borderLink}>{` ${border.name} `}</span>)}</p>
+                            <p>Border Countries: {props.countryBorders && props.countryBorders.map(border => <span key={border.name} onClick={onClickHandler} className={classes.borderLink}>{` ${border.name} `}</span>)}</p>
                         </div>
                     </div>
                 </div>

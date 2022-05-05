@@ -14,7 +14,7 @@ const Countries = () => {
 
     const getBorderCountries = (clickedCountry) => {
         return allCountries.filter(country => {
-            if(clickedCountry.borders.includes(country.alpha3Code)) {
+            if(clickedCountry.borders && clickedCountry.borders.includes(country.alpha3Code)) {
                 return country.name;
             } 
             return;
