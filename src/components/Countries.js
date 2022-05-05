@@ -1,27 +1,40 @@
 import { useEffect, useState } from "react";
 import { API_URL } from "../utils/consts";
-import CountryFilters from "./CountryFilters";
+//import CountryFilters from "./CountryFilters";
 import CountryList from "./CountryList";
 
 const Countries = () => {
     const [countries, setCountries] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
-    const [regionFilter, setRegionFilter] = useState('');
-    
+    const [regionFilter, setRegionFilter] = useState('no-filter');
+
+    const filterByRegionCallback = (countries, regionFilterCheck) => {
+        if(regionFilterCheck === 'no-filter') {
+            return countries;
+        } 
+
+        return countries.filter(country => country.region.toLowerCase() === regionFilterCheck.toLowerCase()); 
+    };
+
     const getCountries = async () => {
         try {
              //setIsLoading(true);
-            const response = await fetch(`${API_URL}/all`, {
-         });
+            const response = await fetch(`${API_URL}/all`, {});
             //setIsLoading(false);               
-            const data = await response.json();
             if(response.ok) {
-               setCountries(data);
+               const data = await response.json();
+               if(regionFilter!=='no-filter') {
+                const filteredResultsByRegion = filterByRegionCallback(data, regionFilter);
+                setCountries(filteredResultsByRegion);
+               } else {
+                setCountries(data);
+               }
+               
             } 
         } catch (error) {
             console.log(`Error while fetching todos: ${error}`);
         }
-    }
+    };
 
     useEffect(() => {
        getCountries();
@@ -51,8 +64,19 @@ const Countries = () => {
         return uniqueResults
     }
 
-    const onSearchHandler = async (search) => {
+    const onInputChange = (event) => {
+        setSearchTerm(event.target.value);
+        onSearchHandler(event.target.value);
+    }
+
+    const onDropdownChange = (event) => {
+        setRegionFilter(event.target.value);
+        onRegionHandler(event.target.value);
+    }
+
+    const onSearchHandler = async (search, latestRegion) => {
         try {
+            const regionFilterCheck = latestRegion ? latestRegion : regionFilter;
             if(search === '') {
                 await getCountries();
             } else {
@@ -98,10 +122,9 @@ const Countries = () => {
 
                 const searchResults = await parseResponses(successfullResults);
             
-
                 // maybe do this in the view ?! think about dropdown
-                if(regionFilter !== '') {
-                    const filteredResultsByRegion = searchResults.filter(result => result.region.toLowerCase() === regionFilter.toLowerCase());
+                if(regionFilterCheck !== 'no-filter') {
+                    const filteredResultsByRegion = filterByRegionCallback(searchResults, regionFilterCheck);
                     setCountries(filteredResultsByRegion);
                 } else {
                     setCountries(searchResults);
@@ -114,20 +137,20 @@ const Countries = () => {
 
     const onRegionHandler = async (region) => {
         try {
-            setRegionFilter(region);
-            // still need to think this through
-
-           // on change if no search term, do normal call
            // on change if there is a searchterm we need to redo onSearchHandler with new filter
-
+           if(searchTerm !== '') {
+             await onSearchHandler(searchTerm ,region);
+            
+           } else {  // on change if no search term, do normal call
             //setIsLoading(true);
-           const response = await fetch(`${API_URL}/continent/${region}`, {
-        });
-           //setIsLoading(false);               
-           const data = await response.json();
-           if(response.ok) {
-              setCountries(data);
-           } 
+            const response = await fetch(`${API_URL}/continent/${region}`, {
+            });
+            //setIsLoading(false);               
+            const data = await response.json();
+            if(response.ok) {
+                setCountries(data);
+            } 
+           }
        } catch (error) {
            console.log(`Error while fetching todos: ${error}`);
        }
@@ -135,10 +158,22 @@ const Countries = () => {
 
     return (    
         <>
-            <CountryFilters 
-                onSearchHandler={onSearchHandler}
-                onRegionHandler={onRegionHandler} 
-            />
+            <div className="filter-container">
+                <input type="text" onChange={onInputChange} value={searchTerm} />
+                <select 
+                    name="filter-region" 
+                    id="filter-region" 
+                    onChange={onDropdownChange} 
+                    value={regionFilter}
+                    >
+                        <option value="no-filter" defaultValue="no-filter">No Filter</option>
+                        <option value="africa">Africa</option>
+                        <option value="americas">Americas</option>
+                        <option value="asia">Asia</option>
+                        <option value="europe">Europe</option>
+                        <option value="oceania">Oceania</option>
+                </select>
+            </div>
             <CountryList 
                 countries={countries}
                 searchTerm={searchTerm}
