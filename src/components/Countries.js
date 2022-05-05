@@ -197,7 +197,7 @@ const Countries = () => {
                 {theme ==='day' ? classes.header : `${classes.header} ${classes.darkHeader}` }
             >
                 <div className={classes.headerTitle}>Where in the world?</div>
-                <div onClick={toggleTheme}>{theme && theme === 'day' ? 'Dark Mode': 'Day Mode' }</div>
+                <div onClick={toggleTheme} className={classes.toggleBtn}>{theme && theme === 'day' ? 'Dark Mode': 'Day Mode' }</div>
             </div>
 
             <div className=
