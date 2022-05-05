@@ -1,5 +1,6 @@
 .backBtn {
     margin: 50px 0;
+    cursor: pointer;
 }
 
 .countryDetailsWrapper {
