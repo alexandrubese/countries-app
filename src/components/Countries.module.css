@@ -1,3 +1,11 @@
+.app {
+  background: #FAFAFA;
+}
+
+.darkApp {
+    background: #212D36;
+}
+
 .header {
     height: 80px;
     background: white;
@@ -16,7 +24,6 @@
 
 .dark {
     color: #fff;
-    background: #222E37;
 }
 
 .lightDark {
@@ -31,6 +38,8 @@
 
 .wrapper {
     padding: 0 80px;
+    min-height:100vh;
+    height: 100%;
 }
 
 .searchInput {
@@ -38,12 +47,14 @@
     height: 55px;
     padding-left: 75px;
     border: 0;
-    box-shadow: 3px 3px 5px #dedede;
+    box-shadow: 0 0 5px #dedede;
+    border-radius: 3px;
 }
 
 .searchDropdown {
     border: 0;
-    box-shadow: 3px 3px 5px #dedede;
+    box-shadow: 0 0 5px #dedede;
+    border-radius: 3px;
 }
 
 .darkSearchInput {

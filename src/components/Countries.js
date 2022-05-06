@@ -192,7 +192,8 @@ const Countries = () => {
     }
 
     return (    
-        <>
+        <div className=
+        {theme ==='day' ? classes.app : classes.darkApp }>
             <div className=
                 {theme ==='day' ? classes.header : `${classes.header} ${classes.darkHeader}` }
             >
@@ -243,8 +244,8 @@ const Countries = () => {
                     />
                 </>
             }
+            </div>
         </div>
-        </>
     );
 }
 

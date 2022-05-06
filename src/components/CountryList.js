@@ -4,6 +4,7 @@ import classes from "./CountryList.module.css";
 const CountryList = (props) => {
     return (    
         <div className={`${classes.CountryList}`}>
+            { props.countries.length === 0 ? 'No countries found': ''}
             { props.countries.map(country => {
                 return <CountryCard
                             key={country.numericCode}
